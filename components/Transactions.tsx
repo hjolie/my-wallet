@@ -3,7 +3,7 @@ import { TransactionModel } from "./TransactionHandler";
 
 interface TransactionsProps {
     transactions: TransactionModel[];
-    transactionDeleted: (index: number) => void;
+    transactionDeleted: (id: string) => void;
 }
 
 const Transactions: React.FC<TransactionsProps> = ({
@@ -15,8 +15,11 @@ const Transactions: React.FC<TransactionsProps> = ({
             <h3>Transactions</h3>
             {transactions.length > 0 && (
                 <div>
-                    {transactions.map((transaction, index) => (
-                        <div key={index} className="transactions-container">
+                    {transactions.map((transaction) => (
+                        <div
+                            key={transaction.id}
+                            className="transactions-container"
+                        >
                             <p
                                 className={
                                     transaction.category === "Income"
@@ -29,7 +32,13 @@ const Transactions: React.FC<TransactionsProps> = ({
                             <p>{transaction.item}</p>
                             <p>{transaction.amount}</p>
                             <button
-                                onClick={() => transactionDeleted(index)}
+                                onClick={() =>
+                                    transaction.id
+                                        ? transactionDeleted(transaction.id)
+                                        : console.error(
+                                              "Unable to delete this item or the item does not exist"
+                                          )
+                                }
                                 className="delete-btn"
                             >
                                 Ｘ

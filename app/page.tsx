@@ -1,11 +1,13 @@
-import HomePage from "@/components/HomePage";
+import SignIn from "@/components/SignIn";
+import SignUp from "@/components/SignUp";
 
-const index = () => {
+const HomePage = () => {
     return (
         <>
-            <HomePage />
+            <SignIn />
+            <SignUp />
         </>
     );
 };
 
-export default index;
+export default HomePage;

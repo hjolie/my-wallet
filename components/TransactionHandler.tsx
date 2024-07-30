@@ -22,7 +22,7 @@ export interface TransactionModel {
     category: string;
     item: string;
     amount: number;
-    uid: string;
+    uid?: string;
 }
 
 const TransactionHandler: React.FC = () => {
